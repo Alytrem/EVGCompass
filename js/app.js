@@ -348,7 +348,8 @@
   }
 
   function toggleNightmode() {
-    setNightmode(!isNightMode);
+    //setNightmode(!isNightMode);
+
   }
 
   function openMap() {
@@ -427,9 +428,9 @@
   popupContents.addEventListener("click", popupContentsClick);
 
   navigator.geolocation.watchPosition(locationUpdate, locationUpdateFail, {
-    enableHighAccuracy: false,
-    maximumAge: 30000,
-    timeout: 27000
+    enableHighAccuracy: true,
+    maximumAge: 20000,
+    timeout: 17000
   });
 
   setNightmode(false);
@@ -439,19 +440,37 @@
 
   var points = [
     {
-      "name": "Ancien appartement",
+      "name": "Crèperie",
       "popup": "creperie",
       "lat": 48.1085694,
       "lng": -1.6893962
+    },
+    {
+      "name": "Ancien appartement",
+      "popup": "mail",
+      "lat": 48.1185694,
+      "lng": -1.7893962
     }
   ];
 
   var targetPoint = null;
+  var targetPointIndex = 0;
   function defineTargetPoint(point) {
     targetPoint = point;
+    console.log("switching to point n°", targetPointIndex, targetPoint);
     popupOpen(targetPoint.popup);
   }
-  defineTargetPoint(points[0]);
+
+  // selecting the initial point
+  var hash = window.location.hash.split('#')[1];
+  if (hash >= 0 && points[hash]) {
+    targetPointIndex = hash;
+  } else if (localStorage.targetPointIndex && points[localStorage.targetPointIndex]) {
+    targetPointIndex = localStorage.targetPointIndex;
+  } else {
+    targetPointIndex = 0;
+  }
+  defineTargetPoint(points[targetPointIndex]);
 
   console.log(points);
 
@@ -520,6 +539,18 @@
     // update orientation
     targetDirection = getDegrees(positionCurrent, targetPoint);
     console.log(targetDirection, "orientation");
+    setObjectiveDirection(targetDirection);
+    // check proximity
+    if (targetDistance < 100) {
+      targetPointIndex++;
+      console.log("Congratulation, < 100m");
+      localStorage.targetPointIndex = targetPointIndex;
+      popupOpen(targetPoint.popup + "-success");
+      setTimeout(
+        function(){
+          defineTargetPoint(points[targetPointIndex]);
+        },10000);
+    }
   }
 
   window.setObjectiveDirection = function (direction) {
