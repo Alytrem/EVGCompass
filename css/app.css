@@ -2,7 +2,9 @@
   font-family: Muli;
   src: url("../fonts/Muli-Light.ttf");
 }
-
+ @viewport {  
+   orientation: portrait;  
+ }  
 
 * {
   box-sizing: border-box;
