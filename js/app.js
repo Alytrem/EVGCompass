@@ -356,7 +356,7 @@
   }
 
   function popupOpenFromClick(event) {
-    popupOpen(event.currentTarget.dataset.name);
+    popupOpen(targetPoint.popup);
   }
 
   function popupOpen(name) {
@@ -440,14 +440,18 @@
   var points = [
     {
       "name": "Ancien appartement",
-      "hints": [
-        "Ton ancien chez toi"
-      ],
+      "popup": "creperie",
       "lat": 48.1085694,
       "lng": -1.6893962
     }
   ];
-  var targetPoint = points[0];
+
+  var targetPoint = null;
+  function defineTargetPoint(point) {
+    targetPoint = point;
+    popupOpen(targetPoint.popup);
+  }
+  defineTargetPoint(points[0]);
 
   console.log(points);
 
