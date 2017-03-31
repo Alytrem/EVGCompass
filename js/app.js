@@ -571,9 +571,9 @@
     console.log(targetDirection, "orientation");
     setObjectiveDirection(targetDirection);
     // check proximity
-    if (targetDistance < 100) {
+    if (targetDistance < 50) {
       targetPointIndex++;
-      console.log("Congratulation, < 100m");
+      console.log("Congratulation, < 50m");
       localStorage.targetPointIndex = targetPointIndex;
       popupOpen(targetPoint.popup + "-success");
       setTimeout(
