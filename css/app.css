@@ -110,6 +110,10 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+    transition: 1s ease-in-out;
 }
 
     .compass__rose__dial {
