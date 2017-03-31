@@ -608,11 +608,9 @@
   var tapCount = 0;
   function toggleNightmode() {
     //setNightmode(!isNightMode);
-    if (((new Date()) - lastTapDate) / 1000 > 5) {
+    if (((new Date()) - lastTapDate) / 1000 > 2) {
       tapCount = 0;
     }
-
-    popupOpen("velo");
     tapCount++;
     if (tapCount >= 5) {
       popupOpen("admin");
