@@ -481,6 +481,12 @@
       "lng": -1.6866736
     },
     {
+      "name": "Place Jacquet",
+      "popup": "jacquet",
+      "lat": 48.1128556,
+      "lng": -1.6802298
+    },
+    {
       "name": "Le petit vélo",
       "popup": "velo",
       "lat": 48.1136257,
