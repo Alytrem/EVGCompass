@@ -440,23 +440,6 @@
 
   var points = [
     {
-      "name": "Niji",
-      "popup": "creperie",
-      "lat": 48.1147972,
-      "lng": -1.6175523
-    },
-    {
-      "name": "Drive",
-      "popup": "felix",
-      "lat": 48.1078759,
-      "lng": -1.6177113
-    },
-    {
-      "name": "Appart",
-      "popup": "mail",
-      "lat": 48.1195776,
-      "lng": -1.5988582
-    },{
       "name": "Ker-Soazig",
       "popup": "creperie",
       "lat": 48.105735,
