@@ -347,9 +347,19 @@
     isNightMode = on;
   }
 
+  var lastTapDate = 0;
+  var resetTimeout;
+  var tapCount = 0;
   function toggleNightmode() {
     //setNightmode(!isNightMode);
-
+    if(((new Date())-lastTapDate)/1000 > 1){
+      tapCount = 0;
+    }
+    tapCount++;
+    if(tapCount >= 5){
+      popupOpen("admin");
+    }
+    lastTapDate = new Date();
   }
 
   function openMap() {
@@ -417,10 +427,6 @@
 
   btnLockOrientation.addEventListener("click", toggleOrientationLock);
   btnNightmode.addEventListener("click", toggleNightmode);
-  btnNightmode.addEventListener("touchstart", adminTouchStart);
-  btnNightmode.addEventListener("touchend", adminTouchEnd);
-  btnNightmode.addEventListener("mousedown", adminTouchStart);
-  btnNightmode.addEventListener("mouseup", adminTouchEnd);
   btnMap.addEventListener("click", openMap);
 
   var i;
@@ -607,18 +613,6 @@
       pointer.style.transform = "rotateZ(" + correctedDirection + "deg)";
     } else if (typeof pointer.style.webkitTransform !== "undefined") {
       pointer.style.webkitTransform = "rotateZ(" + correctedDirection + "deg)";
-    }
-  }
-
-  var touchStartDate = null;
-  function adminTouchStart(){
-    touchStartDate = new Date();
-  }
-  function adminTouchEnd(){
-    var duration = ((new Date())- touchStartDate)/1000;
-    if(duration > 5){
-      popupOpen("admin");
-      location.reload();
     }
   }
 
