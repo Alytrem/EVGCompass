@@ -417,6 +417,10 @@
 
   btnLockOrientation.addEventListener("click", toggleOrientationLock);
   btnNightmode.addEventListener("click", toggleNightmode);
+  btnNightmode.addEventListener("touchstart", adminTouchStart);
+  btnNightmode.addEventListener("touchend", adminTouchEnd);
+  btnNightmode.addEventListener("mousedown", adminTouchStart);
+  btnNightmode.addEventListener("mouseup", adminTouchEnd);
   btnMap.addEventListener("click", openMap);
 
   var i;
@@ -508,6 +512,7 @@
   }
   localStorage.targetPointIndex = targetPointIndex;
   defineTargetPoint(points[targetPointIndex]);
+  window.location.hash = "";
 
   console.log(points);
 
@@ -602,6 +607,18 @@
       pointer.style.transform = "rotateZ(" + correctedDirection + "deg)";
     } else if (typeof pointer.style.webkitTransform !== "undefined") {
       pointer.style.webkitTransform = "rotateZ(" + correctedDirection + "deg)";
+    }
+  }
+
+  var touchStartDate = null;
+  function adminTouchStart(){
+    touchStartDate = new Date();
+  }
+  function adminTouchEnd(){
+    var duration = ((new Date())- touchStartDate)/1000;
+    if(duration > 5){
+      popupOpen("admin");
+      location.reload();
     }
   }
 
