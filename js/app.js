@@ -500,6 +500,7 @@
   } else {
     targetPointIndex = 0;
   }
+  localStorage.targetPointIndex = targetPointIndex;
   defineTargetPoint(points[targetPointIndex]);
 
   console.log(points);
@@ -560,7 +561,7 @@
 
     return brng;
   }
-
+  var timeout = null;
   window.updateDirectionAndDistance = function () {
     // update distance
     targetDistance = getDistance(positionCurrent, targetPoint);
@@ -572,14 +573,18 @@
     setObjectiveDirection(targetDirection);
     // check proximity
     if (targetDistance < 50) {
-      targetPointIndex++;
-      console.log("Congratulation, < 50m");
-      localStorage.targetPointIndex = targetPointIndex;
-      popupOpen(targetPoint.popup + "-success");
-      setTimeout(
-        function(){
-          defineTargetPoint(points[targetPointIndex]);
-        },10000);
+      if (!timeout) {
+        console.log("Congratulation, < 50m");
+        popupOpen(targetPoint.popup + "-success");
+        timeout = setTimeout(
+          function () {
+            targetPointIndex++;
+            localStorage.targetPointIndex = targetPointIndex;
+            defineTargetPoint(points[targetPointIndex]);
+            updateDirectionAndDistance();
+            timeout = null;
+          }, 10000);
+      }
     }
   }
 
