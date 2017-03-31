@@ -440,16 +440,46 @@
 
   var points = [
     {
-      "name": "Crèperie",
+      "name": "Ker-Soazig",
       "popup": "creperie",
-      "lat": 48.1085694,
-      "lng": -1.6893962
+      "lat": 48.105735,
+      "lng": -1.6774227
+    },
+    {
+      "name": "Restaurant Le Felix",
+      "popup": "felix",
+      "lat": 48.1062418,
+      "lng": -1.6801678
     },
     {
       "name": "Ancien appartement",
       "popup": "mail",
-      "lat": 48.1185694,
-      "lng": -1.7893962
+      "lat": 48.1094926,
+      "lng": -1.6897712
+    },
+    {
+      "name": "La croix",
+      "popup": "croix",
+      "lat": 48.1102989,
+      "lng": -1.6866736
+    },
+    {
+      "name": "Le petit vélo",
+      "popup": "velo",
+      "lat": 48.1136257,
+      "lng": -1.6818698
+    },
+    {
+      "name": "Le ty bulle",
+      "popup": "bulle",
+      "lat": 48.1074262,
+      "lng": -1.6716965
+    },
+    {
+      "name": "Laser Game",
+      "popup": "laser",
+      "lat": 48.1142391,
+      "lng": -1.5902132
     }
   ];
 
